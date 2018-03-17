@@ -462,7 +462,12 @@ public class PhotoController extends Observer implements EventHandler<MouseEvent
           confirm.setOnMouseClicked(
               event1 -> {
                 String nameChosen = viewOfPhotos.getSelectionModel().getSelectedItem();
-                rename(photo, nameChosen);
+                if (nameChosen != NULL) {
+                  rename(photo, nameChosen);
+                } else {
+                  PhotoManager.getTestArea()
+                    .setTest(PhotoManager.getTestArea().getTest() + "\n" + "Missing Name History Target.");
+                }
                 OldTags.close();
                 SaveData.main(null);
               });
